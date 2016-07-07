@@ -25,5 +25,5 @@ module.exports = {
 
   "clockwork": "symbol-progress",
   "beveled-star": "symbol-special",
-  "level": "symbol-event"
+  "card-random": "symbol-event"
 };
