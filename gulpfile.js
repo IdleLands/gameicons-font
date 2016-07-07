@@ -47,12 +47,12 @@ gulp.task('build:font', () => {
         }))
         .pipe(iconfontCss({
             fontName: FONT_NAME,
-            formats: ['ttf', 'eot', 'woff'],
             targetPath: 'game-icons.css',
             cssClass: 'game-icon'
         }))
         .pipe(iconfont({
             fontName: FONT_NAME,
+            formats: ['ttf', 'eot', 'woff', 'woff2', 'svg'],
             normalize: true
         }))
         .on('glyphs', (glyphs) => {
