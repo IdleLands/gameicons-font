@@ -1,11 +1,12 @@
 
 const fs = require('fs');
+const path = require('path');
 const minimatch = require('minimatch');
 
 const gulp = require('gulp');
 const unzip = require('gulp-unzip');
+const filter = require('gulp-filter');
 const rename = require('gulp-rename');
-const raster = require('gulp-raster');
 const download = require('gulp-download');
 const iconfont = require('gulp-iconfont');
 const iconfontCss = require('gulp-iconfont-css');
@@ -15,38 +16,35 @@ const ghPages = require('gulp-gh-pages');
 const BASE_URL = 'http://game-icons.net/archives/svg/zip/000000/transparent/game-icons.net.svg.zip';
 const FONT_NAME = 'game-icons';
 
-const unzipOptions = {
-  filter: (entry) => minimatch(entry.path, '**/*.svg')
-};
-
-const fileCounts = {};
-
-const renamePredicate = (extname) => (path) => {
-  path.dirname = '';
-  path.extname = `.${extname}`;
-  if(fileCounts[path.basename]) {
-    fileCounts[path.basename] += 1;
-    path.basename = `${path.basename}-${fileCounts[path.basename]}`;
-  } else {
-    fileCounts[path.basename] = 1;
-  }
-  return path;
-};
-
-gulp.task('build:images', () => {
-    return download(BASE_URL)
-        .pipe(unzip(unzipOptions))
-        .pipe(raster())
-        .pipe(rename(renamePredicate('png')))
-        .pipe(gulp.dest('test/png/'));
-});
+const ONLY_ICONS = require('./.icon-map');
 
 gulp.task('build:font', () => {
+    const fileCounts = {};
+    const includePaths = {};
 
     return download(BASE_URL)
-        .pipe(unzip(unzipOptions))
-        .pipe(rename(renamePredicate('svg')))
-        .pipe(gulp.dest('test/svg/'))
+        .pipe(unzip({
+          filter: (entry) => minimatch(entry.path, '**/*.svg')
+        }))
+        .pipe(rename(filePath => {
+          if(fileCounts[filePath.basename]) {
+            fileCounts[filePath.basename] += 1;
+            filePath.basename = `${filePath.basename}-${fileCounts[filePath.basename]}`;
+          } else {
+            fileCounts[filePath.basename] = 1;
+          }
+
+          if(ONLY_ICONS[filePath.basename]) {
+            filePath.basename = ONLY_ICONS[filePath.basename];
+            includePaths[`${filePath.dirname}/${filePath.basename}${filePath.extname}`] = true;
+          }
+
+          return filePath;
+        }))
+        .pipe(filter(filePath => {
+          const pathData = path.parse(filePath.path);
+          return includePaths[`${pathData.dir}/${pathData.base}`];
+        }))
         .pipe(iconfontCss({
             fontName: FONT_NAME,
             formats: ['ttf', 'eot', 'woff'],
@@ -55,7 +53,6 @@ gulp.task('build:font', () => {
         }))
         .pipe(iconfont({
             fontName: FONT_NAME,
-            startUnicode: 0xFF000,
             normalize: true
         }))
         .on('glyphs', (glyphs) => {
