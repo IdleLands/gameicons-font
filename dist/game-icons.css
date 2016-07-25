@@ -41,78 +41,82 @@
 	content: "\E005";
 }
 
-.game-icon-symbol-achievement:before {
+.game-icon-symbol-guild:before {
 	content: "\E006";
 }
 
-.game-icon-symbol-special:before {
+.game-icon-symbol-achievement:before {
 	content: "\E007";
 }
 
-.game-icon-symbol-guild:before {
+.game-icon-symbol-special:before {
 	content: "\E008";
 }
 
-.game-icon-symbol-levelup:before {
+.game-icon-symbol-party:before {
 	content: "\E009";
 }
 
-.game-icon-symbol-profession:before {
+.game-icon-symbol-levelup:before {
 	content: "\E00A";
 }
 
-.game-icon-stat-con:before {
+.game-icon-symbol-profession:before {
 	content: "\E00B";
 }
 
-.game-icon-stat-agi:before {
+.game-icon-stat-con:before {
 	content: "\E00C";
 }
 
-.game-icon-stat-str:before {
+.game-icon-stat-agi:before {
 	content: "\E00D";
 }
 
-.game-icon-symbol-progress:before {
+.game-icon-stat-str:before {
 	content: "\E00E";
 }
 
-.game-icon-stat-mp:before {
+.game-icon-symbol-progress:before {
 	content: "\E00F";
 }
 
-.game-icon-symbol-explore:before {
+.game-icon-stat-mp:before {
 	content: "\E010";
 }
 
-.game-icon-stat-gold:before {
+.game-icon-symbol-explore:before {
 	content: "\E011";
 }
 
-.game-icon-symbol-gold:before {
+.game-icon-stat-gold:before {
 	content: "\E012";
 }
 
-.game-icon-stat-int:before {
+.game-icon-symbol-gold:before {
 	content: "\E013";
 }
 
-.game-icon-symbol-xp:before {
+.game-icon-stat-int:before {
 	content: "\E014";
 }
 
-.game-icon-stat-luk:before {
+.game-icon-symbol-xp:before {
 	content: "\E015";
 }
 
-.game-icon-symbol-pet:before {
+.game-icon-stat-luk:before {
 	content: "\E016";
 }
 
-.game-icon-stat-hp:before {
+.game-icon-symbol-pet:before {
 	content: "\E017";
 }
 
-.game-icon-symbol-meta:before {
+.game-icon-stat-hp:before {
 	content: "\E018";
+}
+
+.game-icon-symbol-meta:before {
+	content: "\E019";
 }
