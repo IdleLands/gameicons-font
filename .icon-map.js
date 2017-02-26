@@ -8,6 +8,7 @@ module.exports = {
   "clover-2": "stat-luk",
   "nested-hearts": "stat-hp",
   "drop": "stat-mp",
+  "abstract-066": "stat-xp",
   "cash": "stat-gold",
 
   "abstract-010": "symbol-meta",
@@ -26,5 +27,9 @@ module.exports = {
 
   "clockwork": "symbol-progress",
   "beveled-star": "symbol-special",
-  "card-random": "symbol-event"
+  "card-random": "symbol-event",
+  
+  "cycle": "symbol-compare",
+  "padlock": "symbol-lock",
+  "unlocking": "symbol-unlock"
 };
